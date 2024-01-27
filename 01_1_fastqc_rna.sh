@@ -10,5 +10,7 @@
 #SBATCH --error=/data/users/xdeng/assembly_annotation_course/outputs_errors/error_fastqc_rna_%j.e
 #SBATCH --partition=pall
 
+
+# Here the RNAseq is done seperately because apparently when done together it gives errors...
 module add UHTS/Quality_control/fastqc/0.11.9
 fastqc -o /data/users/xdeng/assembly_annotation_course /data/users/xdeng/assembly_annotation_course/participant_4/RNAseq/*.fastq.gz
