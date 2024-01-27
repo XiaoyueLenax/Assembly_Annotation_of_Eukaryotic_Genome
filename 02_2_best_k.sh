@@ -8,6 +8,8 @@
 #SBATCH --error=/data/users/xdeng/assembly_annotation_course/outputs_errors/error_best_kmer_%j.e
 #SBATCH --partition=pall
 
+
+# A script found to give best k-mer counts.In the end the k-mer selection was 19. 
 if [ -z $1 ]; then
   echo "Usage: ./best_k.sh [-c] <genome_size> [tolerable_collision_rate]"
   echo -e "  -c         : [OPTIONAL] evaluation will be on homopolymer compressed genome. EXPERIMENTAL"
