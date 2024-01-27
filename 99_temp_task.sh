@@ -9,4 +9,6 @@
 #SBATCH --error=/data/users/xdeng/assembly_annotation_course/outputs_errors/error_temp_%j.e
 #SBATCH --partition=pall
 
-scp /data/users/xdeng/assembly_annotation_course/participant_4/Illumina /data/users/xdeng/assembly_annotation_course/raw_data
+
+# This script is used for small tasks that are repeated or extra to the courses.
+#scp /data/users/xdeng/assembly_annotation_course/participant_4/Illumina /data/users/xdeng/assembly_annotation_course/raw_data
