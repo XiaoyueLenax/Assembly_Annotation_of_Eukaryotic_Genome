@@ -18,4 +18,5 @@ name=Illumina
   input_file1=$1
   input_file2=$2
   output_file="${name}.jf"
+  #K mer is set to 19 after testing & discussing
   jellyfish count -C -m 19 -s 1000000000 -t 4 -o "$output_file" <(zcat "$input_file1") <(zcat "$input_file2")
