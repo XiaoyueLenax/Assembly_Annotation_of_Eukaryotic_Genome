@@ -12,8 +12,10 @@
 
 module load UHTS/Analysis/jellyfish/2.3.0
 # Define the base pathway
-
-input_file1="/data/users/xdeng/assembly_annotation_course/participant_4/Illumina/ERR3624575_1.fastq.gz"
-input_file2="/data/users/xdeng/assembly_annotation_course/participant_4/Illumina/ERR3624575_2.fastq.gz"
-output_file="second_illumina.jf"
-jellyfish count -C -m 19 -s 1000000000 -t 4 -o "$output_file" <(zcat "$input_file1") <(zcat "$input_file2")
+name=Illumina
+#name=pacbio
+#name=RNAseq
+  input_file1=$1
+  input_file2=$2
+  output_file="${name}.jf"
+  jellyfish count -C -m 19 -s 1000000000 -t 4 -o "$output_file" <(zcat "$input_file1") <(zcat "$input_file2")
