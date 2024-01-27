@@ -19,17 +19,28 @@ BED_DIR=${OUTPUT_DIR}/BED
 PEPTIDE_DIR=${OUT_DIR}/PEPTIDE
 
 
-#Get all contings and sort them by size
-    awk '$3=="contig"' ${INPUT_DIR}/Sha_group.all.maker.noseq.gff.renamed.gff|sort -t $'\t' -r -k5,5n > ${OUT_DIR}/size_sorted_contigs.txt
+#sort contigs
+awk '$3=="contig"' ${INPUT_DIR}/Sha_group.all.maker.noseq.gff.renamed.gff|sort -t $'\t' -r -k5,5n > ${OUT_DIR}/size_sorted_contigs.txt
 
-#Get the 10 longest
-    tail ${OUT_DIR}/size_sorted_contigs.txt|cut -f1 > ${OUT_DIR}/contigs.txt
+#Ten largest contigs
+tail ${OUT_DIR}/size_sorted_contigs.txt|cut -f1 > ${OUT_DIR}/contigs.txt
 
 #Create bed file
-    awk '$3=="mRNA"' ${INPUT_DIR}/Sha_group.all.maker.noseq.gff.renamed.gff|cut -f 1,4,5,9|sed 's/ID=//'|sed 's/;.\+//'|grep -w -f ${OUT_DIR}/contigs.txt > ${BED_DIR}/C24.bed
+awk '$3=="mRNA"' ${INPUT_DIR}/Sha_group.all.maker.noseq.gff.renamed.gff|cut -f 1,4,5,9|sed 's/ID=//'|sed 's/;.\+//'|grep -w -f ${OUT_DIR}/contigs.txt > ${BED_DIR}/C24.bed
 
 #Get the gene IDs
-    cut -f4 ${BED_DIR}/C24.bed > ${OUT_DIR}/gene_IDs.txt
+cut -f4 ${BED_DIR}/C24.bed > ${OUT_DIR}/gene_IDs.txt
 
 #Create fasta file
-    cat ${INPUT_DIR}/Sha_group.all.maker.proteins.fasta.renamed.fasta|seqkit grep -r -f ${OUT_DIR}/gene_IDs.txt |seqkit seq -i > ${PEPTIDE_DIR}/C24.fa
+cat ${INPUT_DIR}/Sha_group.all.maker.proteins.fasta.renamed.fasta|seqkit grep -r -f ${OUT_DIR}/gene_IDs.txt |seqkit seq -i > ${PEPTIDE_DIR}/C24.fa
+
+#Load seqkit
+module add UHTS/Analysis/SeqKit/0.13.2
+mkdir ${genespace_dir}
+
+    genespace_image=${course_dir}/scripts/genespace_1.1.4.sif
+    genespace_script=${course_dir}/scripts/genespace.R
+
+apptainer exec \
+--bind ${course_dir} \
+${genespace_image} Rscript ${genespace_script}
