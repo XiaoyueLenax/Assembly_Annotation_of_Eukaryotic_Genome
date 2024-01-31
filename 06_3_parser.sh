@@ -13,5 +13,7 @@
 Genome_out="/data/users/xdeng/assembly_annotation_course/06_group_result/Sha_flye_polished.fasta.mod.out"
 PERL_SCRIPT="/data/users/xdeng/assembly_annotation_course/01_scripts/parseRM.pl"
 #Phylogenetics_doer 
+
+# execute the script
 cd /data/users/xdeng/assembly_annotation_course/TE_annotation
 perl $PERL_SCRIPT -i /data/users/xdeng/assembly_annotation_course/06_group_result/Sha_flye_polished.fasta.mod.out -l 50,1 -v
