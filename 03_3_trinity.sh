@@ -18,5 +18,7 @@ output_dir="/data/users/xdeng/assembly_annotation_course/rnaseq_assembly/trinity
 left_reads="ERR754081_1.fastq.gz"
 right_reads="ERR754081_2.fastq.gz"
 
+# Some investigation on the forward and backward-ness
+
 #Trinity --seqType fq --left "$input_dir/$left_reads" --right "$input_dir/$right_reads" --output "$output_dir" --CPU 16 --max_memory 64G --SS_lib_type RF
 Trinity --seqType fq --left "$input_dir/$left_reads" --right "$input_dir/$right_reads" --output "$output_dir" --CPU 16 --max_memory 64G --SS_lib_type FR
