@@ -10,10 +10,9 @@
 #SBATCH --error=/data/users/xdeng/assembly_annotation_course/outputs_errors/error_illumina_%j.e
 
 
-#file="/data/users/xdeng/assembly_annotation_course/02_raw_data/pacbio/ERR3415830.fastq.gz"
-#file="/data/users/xdeng/assembly_annotation_course/02_raw_data/pacbio/ERR3415831.fastq.gz"
-file1="/data/users/xdeng/assembly_annotation_course/02_raw_data/Illumina/ERR3624575_2.fastq.gz"
-file2="/data/users/xdeng/assembly_annotation_course/02_raw_data/Illumina/ERR3624575_2.fastq.gz"
+#Perform counting on the pacbio reads - possibly a way to avoid unzipping, but.
+file1="/data/users/xdeng/assembly_annotation_course/02_raw_data/pacbio/ERR3415830.fastq.gz"
+file2="/data/users/xdeng/assembly_annotation_course/02_raw_data/pacbio/ERR3415831.fastq.gz"
 
 zcat $file1 | awk 'BEGIN{n=0; s=0} /length/ {++n; s=s+substr($3, 8)} END{print n; print s}'
 zcat $file2 | awk 'BEGIN{n=0; s=0} /length/ {++n; s=s+substr($3, 8)} END{print n; print s}'
