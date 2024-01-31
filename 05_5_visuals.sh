@@ -20,6 +20,8 @@ reference_file="/data/users/xdeng/assembly_annotation_course/polish_eval/polish/
 query_file="/data/users/xdeng/assembly_annotation_course/polish_eval/polish/pilon/canu/canu.fasta"
 #query_file="/data/users/xdeng/assembly_annotation_course/polish_eval/polish/pilon/flye/flye.fasta"
 
+
+
 #task_name=flye
 #task_name=canu
 #task_name=flye_pol
@@ -37,7 +39,12 @@ mummer_dir=$outfile_general/mummer
 
 #nucmer -b 1000 -c 1000 $reference_file $query_file -p $task_name
 nucmer --mincluster 100 --breaklen 1000 $reference_file $query_file -p $task_name
-#nucmer --mincluster 1000 --delta ${OUTPUT_DIR}/${filename}.delta --breaklen 1000 ${reference} ${assemblies[$SLURM_ARRAY_TASK_ID]}
+nucmer --mincluster 1000 --delta ${OUTPUT_DIR}/${filename}.delta --breaklen 1000 ${reference} ${assemblies[$SLURM_ARRAY_TASK_ID]}
+  #--mincluster 1000: sets the minimum cluster length to 1000 base pairs, focusing the alignment on significant matches.
+  #--delta ${OUTPUT_DIR}/${filename}.delta: Specifies the output file for the delta alignment results. 
+  #--breaklen 1000: Sets the maximum allowed gap between matches in a cluster to 1000 base pairs, 
+  #${reference}: The path to the reference genome file.
+  #${assemblies[$SLURM_ARRAY_TASK_ID]}: Specifies the path to the query genome file (from an array of assemblies if running multiple alignments in a batch system like SLURM). 
 
 #mummer -mum -b -c ref.fasta qry.fasta > ref_qry.mums
 #mummerplot --postscript --prefix=ref_qry ref_qry.mums
