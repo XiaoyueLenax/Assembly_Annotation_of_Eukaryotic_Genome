@@ -12,6 +12,8 @@
 
 COURSEDIR="/data/courses/assembly-annotation-course"
 WORKDIR="/data/users/xdeng/assembly_annotation_course"
+
+# data dir: uses participant 5's data for the Annotations.
 DATADIR="/data/users/grochat/genome_assembly_course"
 cd $WORKDIR
 singularity exec \
