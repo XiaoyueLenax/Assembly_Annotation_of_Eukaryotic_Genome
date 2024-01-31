@@ -32,6 +32,8 @@ do
         rt_tag='Ty1-RT'
     fi
 
+    #  Shorten the identifiers of RT sequences.
+
     grep ${rt_tag} ${in_file} > ${list_file} #make a list of RT proteins to extract
     sed -i 's/>//' ${list_file} #remove ">" from the header
     sed -i 's/ .\+//' ${list_file} #remove all characters following "empty space" from the header
@@ -40,9 +42,11 @@ do
     sed_file=${out_file}.sed
     sed 's/|.\+//' ${out_file} > ${sed_file} #remove all characters following "|"
 
+    # Align the sequences with clustal omega.
     clustalo_file=${sed_file}.clustalo_protein_alignment.fasta
     clustalo -i ${sed_file} -o ${clustalo_file}
 
+    # Create a phylogenetic tree with FastTree
     tree_file=${clustalo_file}.tree
     FastTree -out ${tree_file} ${clustalo_file}
 done
