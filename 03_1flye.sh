@@ -18,4 +18,5 @@ in_path="/data/users/xdeng/assembly_annotation_course/participant_4/pacbio"
 # flye --pacbio-raw $in_path/ERR3415830.fastq.gz --out-dir $out_path/pacbio_assemply --threads 4
 
 # flye concat
+# Uses the genome size from before.
 flye --pacbio-raw $in_path/*.fastq.gz -o $out_path/flye --threads 16 -g 126m 
