@@ -27,6 +27,7 @@ cp $gff ${gff}.renamed.gff
 cp $protein ${protein}.renamed.fasta
 cp $transcript ${transcript}.renamed.fasta
 
+# Generates a mapping file to standardize feature IDs in GFF files produced by MAKER.
 maker_map_ids --prefix $prefix --justify 7 ${gff}.renamed.gff > ${base}.id.map
 map_gff_ids ${base}.id.map ${gff}.renamed.gff
 map_fasta_ids ${base}.id.map ${protein}.renamed.fasta
