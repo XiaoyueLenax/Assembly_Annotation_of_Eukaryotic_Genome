@@ -18,7 +18,7 @@ out_dir="/data/users/xdeng/assembly_annotation_course/canu_3"
 # gridEngineResourceOption="--cpus-per-task=THREADS --mem-per-cpu=MEMORY"
 
 
-# what is the genome size?
+# what is the genome size? 126Mb. Like before.
 canu -p pacbio_canu_3 -d $out_dir genomeSize=126m -pacbio $file_path/*.fastq.gz maxThreads=16 maxMemory=64 gridEngineResourceOption="--cpus-per-task=THREADS --mem-per-cpu=MEMORY"
 
 #older version
