@@ -27,6 +27,13 @@ OUT_DIR=/data/users/xdeng/assembly_annotation_course/09_Annotation_Control/BUSCO
 cp -r /software/SequenceAnalysis/GenePrediction/augustus/3.3.3.1/config augustus_config
 export AUGUSTUS_CONFIG_PATH=/data/users/xdeng/assembly_annotation_course/augustus_config
 
+# Perform BUSCO
 INPUT_FILE=/data/users/xdeng/assembly_annotation_course/09_Annotation_Control/run_mpi.maker.output/Sha_group.all.maker.proteins.fasta.renamed.fasta
 busco -i $INPUT_FILE -l brassicales_odb10 -m proteins -c 20 -f --out Sha_group
-# parameter -f : force busco, overwrites the original files
+# Options explained:
+    #-i $INPUT_FILE: Specifies protein sequence input file.
+    #-l brassicales_odb10: Uses the Brassicales lineage dataset.
+    #-m proteins: Sets analysis mode for proteins.
+    #-c 20: Uses 20 CPU cores for faster processing.
+    #-f: Overwrites any existing output.
+    #--out Sha_group: Names output directory/files as 'Sha_group'.
